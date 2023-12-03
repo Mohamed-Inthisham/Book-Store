@@ -4,10 +4,7 @@ import com.example.ProjectBookStore.controller.request.BookRequest;
 import com.example.ProjectBookStore.controller.response.BookResponse;
 import com.example.ProjectBookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BookController {
@@ -16,7 +13,7 @@ public class BookController {
 
     @PostMapping("/books")
     public BookResponse addBook(@RequestBody BookRequest bookRequest){
-        //System.out.println("Book added Successfully : "+bookRequest.getTitle());
+        System.out.println("Book added Successfully : ");
         bookService.create(bookRequest);
         BookResponse bookResponse=new BookResponse();
         bookResponse.setTitle(bookRequest.getTitle());
@@ -29,5 +26,13 @@ public class BookController {
         bookResponse.setLanguage(bookRequest.getLanguage());
         return bookResponse;
     }
-    
+    @DeleteMapping("/books/{book-id}")
+    public BookResponse removeBook(@PathVariable("book-id")Integer id,@RequestBody BookRequest bookRequest){
+        System.out.println("Book Deleted Successfully");
+        System.out.println("Deleted Book Id : "+id);
+        bookService.delete(bookRequest);
+        BookResponse bookResponse=new BookResponse();
+        bookResponse.setTitle(bookRequest.getTitle());
+        return bookResponse;
+    }
 }

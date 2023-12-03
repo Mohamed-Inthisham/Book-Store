@@ -3,7 +3,7 @@ package com.example.ProjectBookStore.controller.request;
 public class BookRequest {
 
     private String title;
-    private int id;
+    private Integer id;
     private String isbn;
     private int pages;
     private String author;
