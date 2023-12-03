@@ -1,13 +1,13 @@
 package com.example.ProjectBookStore.controller;
 
+import com.example.ProjectBookStore.controller.request.Author;
 import com.example.ProjectBookStore.controller.request.AuthorRequest;
-import com.example.ProjectBookStore.controller.request.BookRequest;
 import com.example.ProjectBookStore.controller.response.AuthorResponse;
-import com.example.ProjectBookStore.controller.response.BookResponse;
 import com.example.ProjectBookStore.service.AuthorService;
-import com.example.ProjectBookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class AuthorController {
@@ -35,5 +35,11 @@ public class AuthorController {
         authorResponse.setName(authorRequest.getName());
         return authorResponse;
     }
+    @GetMapping("/authors")
+    public List<Author> getAllAuthors(){
+        return authorService.getAllAuthors();
+
+    }
+
 
 }
